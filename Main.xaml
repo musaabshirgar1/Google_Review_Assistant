@@ -151,6 +151,9 @@
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
       <AssemblyReference>Otomo.Excel</AssemblyReference>
+      <AssemblyReference>System.Linq.Parallel</AssemblyReference>
+      <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Linq.Queryable</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -158,7 +161,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="Google Review Assistant" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="1855,638.04" sap2010:WorkflowViewState.IdRef="StateMachine_1">
+  <StateMachine InitialState="{x:Reference __ReferenceID3}" sap2010:Annotation.AnnotationText="Google Review Assistant" DisplayName="General Business Process" sap:VirtualizedContainerService.HintSize="1855,605.04" sap2010:WorkflowViewState.IdRef="StateMachine_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1062,11 +1065,12 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <Transition.To>
-                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="566,2443" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
+                            <State x:Name="__ReferenceID1" sap2010:Annotation.AnnotationText="End process and close all applications used." DisplayName="End Process" sap:VirtualizedContainerService.HintSize="566,3099" sap2010:WorkflowViewState.IdRef="State_1" IsFinal="True">
                               <State.Entry>
-                                <Sequence sap:VirtualizedContainerService.HintSize="520,2298" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                                <Sequence sap:VirtualizedContainerService.HintSize="520,2932" sap2010:WorkflowViewState.IdRef="Sequence_63">
                                   <Sequence.Variables>
                                     <Variable x:TypeArguments="x:String" Name="excelFilePath" />
+                                    <Variable x:TypeArguments="sd:DataTable" Name="dt_Header" />
                                   </Sequence.Variables>
                                   <sap:WorkflowViewStateService.ViewState>
                                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -1082,7 +1086,10 @@
                                     </Assign.Value>
                                   </Assign>
                                   <oew:CreateNewWorkbook DisplayName="Create new workbook" sap:VirtualizedContainerService.HintSize="486,165" sap2010:WorkflowViewState.IdRef="CreateNewWorkbook_1" Overwrite="False" SheetName="Sheet1" WorkbookPath="[excelFilePath]" />
-                                  <oer:WriteRange DisplayName="Write range" sap:VirtualizedContainerService.HintSize="486,271" sap2010:WorkflowViewState.IdRef="WriteRange_4" InputDataTable="[dt_AnalyzedData]" SheetName="Sheet1" StartCell="A1" WorkbookPath="[excelFilePath]" />
+                                  <ui:BuildDataTable DataTable="[dt_Header]" DisplayName="Build dt_Header" sap:VirtualizedContainerService.HintSize="486,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_2" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column1&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column2&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column3&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column4&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column5&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column6&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column7&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Column8&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;  &lt;TableName&gt;&#xD;&#xA;    &lt;Column1&gt;CustomerName&lt;/Column1&gt;&#xD;&#xA;    &lt;Column2&gt;Review&lt;/Column2&gt;&#xD;&#xA;    &lt;Column3&gt;RelativeTime&lt;/Column3&gt;&#xD;&#xA;    &lt;Column4&gt;Sentiment&lt;/Column4&gt;&#xD;&#xA;    &lt;Column5&gt;Keywords&lt;/Column5&gt;&#xD;&#xA;    &lt;Column6&gt;PositiveAspects&lt;/Column6&gt;&#xD;&#xA;    &lt;Column7&gt;NegativeAspects&lt;/Column7&gt;&#xD;&#xA;    &lt;Column8&gt;SuggestedResponse&lt;/Column8&gt;&#xD;&#xA;  &lt;/TableName&gt;&#xD;&#xA;&lt;/NewDataSet&gt;" />
+                                  <oer:WriteRange DisplayName="Write range for header row" sap:VirtualizedContainerService.HintSize="486,271" sap2010:WorkflowViewState.IdRef="WriteRange_6" InputDataTable="[dt_Header]" SheetName="Sheet1" StartCell="A1" WorkbookPath="[excelFilePath]" />
+                                  <oer:WriteRange DisplayName="Write range for analyzed data" sap:VirtualizedContainerService.HintSize="486,271" sap2010:WorkflowViewState.IdRef="WriteRange_4" InputDataTable="[dt_AnalyzedData]" SheetName="Sheet1" StartCell="A2" WorkbookPath="[excelFilePath]" />
+                                  <oer:WriteRange DisplayName="Write range" sap:VirtualizedContainerService.HintSize="486,271" sap2010:WorkflowViewState.IdRef="WriteRange_5" InputDataTable="[dt_AnalyzedData]" SheetName="Sheet1" StartCell="A2" WorkbookPath="[excelFilePath]" />
                                   <oec:AutofitColumns Columns="A:H" DisplayName="Autofit columns" sap:VirtualizedContainerService.HintSize="486,218" sap2010:WorkflowViewState.IdRef="AutofitColumns_1" SheetName="Sheet1" WorkbookPath="[excelFilePath]" />
                                   <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="486,352" sap2010:WorkflowViewState.IdRef="CommentOut_1">
                                     <ui:CommentOut.Body>
