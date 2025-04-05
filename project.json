@@ -4,6 +4,7 @@
   "description": "Automate the collection and sentiment analysis of customer reviews from Google Maps using UiPath and the ChatGPT API. This project classifies reviews as positive, negative, or neutral and provides actionable insights to improve customer satisfaction. Results are communicated to stakeholders efficiently through automated emails.",
   "main": "Main.xaml",
   "dependencies": {
+    "Otomo.Excel.Activities": "[1.1.6]",
     "UiPath.Excel.Activities": "[2.23.4]",
     "UiPath.System.Activities": "[24.10.3]",
     "UiPath.Testing.Activities": "[24.10.0]",
