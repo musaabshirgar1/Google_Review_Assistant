@@ -1,0 +1,129 @@
+{
+  "exportedBy": null,
+  "bundleHash": null,
+  "version": "1.0.0.0",
+  "jitAssemblyCompilerCommands": [
+    {
+      "providerName": "CustomEntities",
+      "bundleOptions": {
+        "hash": "J7iqlAFAm6q8LfEk+YFHJzTsZ3rdgjoE+nhNBI8Ze2gw6JW0tMSY2Eg5+5sAG5nYifLlfBwBP0Igke0HalWnfQ==",
+        "bundleName": "CC90D8578CA_textCompletionUsingGemini_Create",
+        "entitiesBundle": {
+          "Types": {
+            "safetyRatings": {
+              "name": "safetyRatings",
+              "properties": [
+                {
+                  "name": "category",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "probability",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  }
+                }
+              ],
+              "baseType": null
+            },
+            "usageMetadata": {
+              "name": "usageMetadata",
+              "properties": [
+                {
+                  "name": "totalTokenCount",
+                  "type": {
+                    "ClrType": "System.Nullable`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "candidatesTokenCount",
+                  "type": {
+                    "ClrType": "System.Nullable`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "promptTokenCount",
+                  "type": {
+                    "ClrType": "System.Nullable`1[[System.Int32, System.Private.CoreLib]], System.Private.CoreLib"
+                  }
+                }
+              ],
+              "baseType": null
+            },
+            "textCompletionUsingGemini_Create": {
+              "name": "textCompletionUsingGemini_Create",
+              "properties": [
+                {
+                  "name": "safetyRatings",
+                  "type": {
+                    "definitionName": "safetyRatings"
+                  },
+                  "isCollection": true,
+                  "collectionGenericType": {
+                    "ClrType": "System.Collections.Generic.List`1, System.Private.CoreLib"
+                  }
+                },
+                {
+                  "name": "usageMetadata",
+                  "type": {
+                    "definitionName": "usageMetadata"
+                  }
+                },
+                {
+                  "name": "text",
+                  "type": {
+                    "ClrType": "System.String, System.Private.CoreLib"
+                  },
+                  "attributes": {
+                    "values": [
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.CategoryAttribute, System.ComponentModel.Primitives"
+                        },
+                        "constructorArguments": [
+                          {
+                            "Value": "\"Simplified\"",
+                            "type": {
+                              "ClrType": "System.String, System.Private.CoreLib"
+                            }
+                          }
+                        ],
+                        "namedArguments": []
+                      },
+                      {
+                        "Type": {
+                          "ClrType": "System.ComponentModel.DataAnnotations.DisplayAttribute, System.ComponentModel.Annotations"
+                        },
+                        "constructorArguments": [],
+                        "namedArguments": [
+                          {
+                            "name": "Order",
+                            "value": {
+                              "Value": "8",
+                              "type": {
+                                "ClrType": "System.Int32, System.Private.CoreLib"
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              ],
+              "baseType": null
+            }
+          },
+          "version": 1
+        }
+      },
+      "entityAssemblyKey": {
+        "name": "UiPath.IntegrationService.Activities.SWEntities.CC90D8578CA_textCompletionUsingGemini_Create",
+        "hash": "SjdpcWxBRkFtNnE4TGZFaytZRkhKelRzWjNyZGdqb0UrbmhOQkk4WmUyZ3c2SlcwdE1TWTJFZzUrNXNBRzVuWWlmTGxmQndCUDBJZ2tlMEhhbFduZlE9PQ",
+        "assemblyName": "CC90D8578CA_textComp.AbmnLqGYfC1pRvdd2UVZ5N4"
+      }
+    }
+  ]
+}
