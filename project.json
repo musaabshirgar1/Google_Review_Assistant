@@ -4,7 +4,6 @@
   "description": "Automate the collection and sentiment analysis of customer reviews from Google Maps using UiPath and the Gemini API. This bot classifies reviews as positive, negative, or neutral and provides actionable insights to improve customer satisfaction.",
   "main": "Main.xaml",
   "dependencies": {
-    "InternalLabs.GoogleGemini.Activities": "[1.0.2]",
     "Otomo.Excel.Activities": "[1.1.6]",
     "UiPath.Excel.Activities": "[2.23.4]",
     "UiPath.System.Activities": "[24.10.3]",
