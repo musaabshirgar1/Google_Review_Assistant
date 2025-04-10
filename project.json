@@ -6,7 +6,9 @@
   "dependencies": {
     "Otomo.Excel.Activities": "[1.1.6]",
     "UiPath.Excel.Activities": "[2.23.4]",
-    "UiPath.System.Activities": "[24.10.3]",
+    "UiPath.GSuite.Activities": "[3.0.10]",
+    "UiPath.Mail.Activities": "[2.0.11]",
+    "UiPath.System.Activities": "[25.2.4]",
     "UiPath.Testing.Activities": "[24.10.0]",
     "UiPath.UIAutomation.Activities": "[24.10.2]",
     "UiPath.WebAPI.Activities": "[1.21.0]"
@@ -15,7 +17,7 @@
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "24.10.1.0",
-  "projectVersion": "1.0.1",
+  "projectVersion": "1.0.2",
   "runtimeOptions": {
     "autoDispose": false,
     "netFrameworkLazyLoading": false,
@@ -101,6 +103,8 @@
   ],
   "isTemplate": false,
   "templateProjectData": {},
-  "publishData": {},
+  "publishData": {
+    "iconUrl": ".package/Logo.png"
+  },
   "targetFramework": "Windows"
 }

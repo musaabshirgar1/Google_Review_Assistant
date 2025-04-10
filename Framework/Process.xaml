@@ -154,6 +154,7 @@
       <AssemblyReference>InternalLabs.GoogleGemini.Activities</AssemblyReference>
       <AssemblyReference>UiPath.IntegrationService.Activities.Runtime</AssemblyReference>
       <AssemblyReference>CC90D8578CA_textComp.AbmnLqGYfC1pRvdd2UVZ5N4</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <sap:WorkflowViewStateService.ViewState>
@@ -161,7 +162,7 @@
       <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1377.6666666666667,16357" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1194.6666666666667,16706.666666666668" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:IEnumerable(ui:QueueItem)" Name="QueueData" />
     </Sequence.Variables>
@@ -171,12 +172,12 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="572,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="572,88" sap2010:WorkflowViewState.IdRef="Comment_2" Text="//  Invoke steps of the process" />
-    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="572,16001" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="572,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <ui:Comment DisplayName="Comment (placeholder)" sap:VirtualizedContainerService.HintSize="572,88.66666666666667" sap2010:WorkflowViewState.IdRef="Comment_2" Text="//  Invoke steps of the process" />
+    <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="572,16340" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <Sequence.Variables>
         <Variable x:TypeArguments="ui:QueueItem" Name="CurrentItem" />
-        <Variable x:TypeArguments="x:String" Name="Review" />
+        <Variable x:TypeArguments="x:String" Name="CustomerReview" />
         <Variable x:TypeArguments="x:String" Name="Api" />
         <Variable x:TypeArguments="x:String" Name="GeminiApiResponse" />
         <Variable x:TypeArguments="njl:JObject" Name="GeminiApiResponseJson" />
@@ -192,7 +193,7 @@
         <Variable x:TypeArguments="s:String[]" Name="columnNames" />
         <Variable x:TypeArguments="x:Int32" Name="columnCount" />
         <Variable x:TypeArguments="x:String" Name="CustomerName" />
-        <Variable x:TypeArguments="x:String" Name="RelativeTime" />
+        <Variable x:TypeArguments="x:String" Name="CustomerEmail" />
         <Variable x:TypeArguments="sd:DataTable" Name="dt_Temp" />
         <Variable x:TypeArguments="x:String" Name="GeminiApiEndpoint" />
         <Variable x:TypeArguments="x:String" Default="No Data - Default Value" Name="SuggestedResponse" />
@@ -203,21 +204,21 @@
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;Fetching API Key from Orchestrator.&quot;]" />
-      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GoogleGemeniAPIKey" CacheStrategy="None" DisplayName="Get Asset" FolderPath="dev.shirgar@outlook.com's workspace" sap:VirtualizedContainerService.HintSize="538,175" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_30" Level="Info" Message="[&quot;Fetching API Key from Orchestrator.&quot;]" />
+      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="GoogleGemeniAPIKey" CacheStrategy="None" DisplayName="Get Asset" FolderPath="dev.shirgar@outlook.com's workspace" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
         <ui:GetRobotAsset.Value>
           <OutArgument x:TypeArguments="x:String">[GemeniAPIKey]</OutArgument>
         </ui:GetRobotAsset.Value>
       </ui:GetRobotAsset>
-      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="538,379" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="538,384.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
         <ui:CommentOut.Body>
-          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,268" sap2010:WorkflowViewState.IdRef="Sequence_51">
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="450,272.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_51">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" sap2010:Annotation.AnnotationText="To retrive the API key from the Orchestrator&#xA;" AssetName="[in_Config(&quot;GeminiAPIKeyCredential&quot;).ToString]" CacheStrategy="None" DisplayName="Get API Key" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="416,208" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[GemeniAPIKey]">
+            <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" sap2010:Annotation.AnnotationText="To retrive the API key from the Orchestrator&#xA;" AssetName="[in_Config(&quot;GeminiAPIKeyCredential&quot;).ToString]" CacheStrategy="None" DisplayName="Get API Key" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="416,212.66666666666666" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[GemeniAPIKey]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -227,38 +228,38 @@
           </Sequence>
         </ui:CommentOut.Body>
       </ui:CommentOut>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Info" Message="[&quot;Successfully fetched API Key from Orchestrator.&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_32" Message="[&quot;Fetching transaction items from the queue.&quot;]" />
-      <Assign DisplayName="Extract Customer Name From Transaction" sap:VirtualizedContainerService.HintSize="538,114" sap2010:WorkflowViewState.IdRef="Assign_45">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_31" Level="Info" Message="[&quot;Successfully fetched API Key from Orchestrator.&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_32" Message="[&quot;Fetching transaction items from the queue.&quot;]" />
+      <Assign DisplayName="Extract Customer Name From Transaction" sap:VirtualizedContainerService.HintSize="538,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_45">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[CustomerName]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("CustomerName").ToString]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("Name").ToString]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign DisplayName="Extract Relative Time From Transaction" sap:VirtualizedContainerService.HintSize="538,114" sap2010:WorkflowViewState.IdRef="Assign_46">
+      <Assign DisplayName="Extract Relative Time From Transaction" sap:VirtualizedContainerService.HintSize="538,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_46">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[RelativeTime]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[CustomerEmail]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("RelativeTime").ToString]</InArgument>
+          <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("Email").ToString]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign DisplayName="Extract Review From Transaction" sap:VirtualizedContainerService.HintSize="538,114" sap2010:WorkflowViewState.IdRef="Assign_12">
+      <Assign DisplayName="Extract Review From Transaction" sap:VirtualizedContainerService.HintSize="538,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_12">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[Review]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[CustomerReview]</OutArgument>
         </Assign.To>
         <Assign.Value>
           <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("Review").ToString]</InArgument>
         </Assign.Value>
       </Assign>
-      <Assign sap2010:Annotation.AnnotationText="--m cleans review data over here" DisplayName="Clean Review Text" sap:VirtualizedContainerService.HintSize="538,145" sap2010:WorkflowViewState.IdRef="Assign_48">
+      <Assign sap2010:Annotation.AnnotationText="--m cleans review data over here" DisplayName="Clean Review Text" sap:VirtualizedContainerService.HintSize="538,148" sap2010:WorkflowViewState.IdRef="Assign_48">
         <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[Review]</OutArgument>
+          <OutArgument x:TypeArguments="x:String">[CustomerReview]</OutArgument>
         </Assign.To>
         <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(Review.ToLower().Trim(), "[""'\\[\\]\\{\\}\\(\\)\\&lt;\\&gt;\\?\\!\\@\\#\\$\\%\\^\\&amp;\\*\\;\\:.,/\\|\\`~]", "")]</InArgument>
+          <InArgument x:TypeArguments="x:String">[System.Text.RegularExpressions.Regex.Replace(CustomerReview.ToLower().Trim(), "[""'\\[\\]\\{\\}\\(\\)\\&lt;\\&gt;\\?\\!\\@\\#\\$\\%\\^\\&amp;\\*\\;\\:.,/\\|\\`~]", "")]</InArgument>
         </Assign.Value>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -266,9 +267,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_48" Level="Info" Message="[&quot;Successfully cleaned review data&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[&quot;Successfully fetched transaction items from the queue.&quot;]" />
-      <Assign sap2010:Annotation.AnnotationText="Building the complete Gemini API URL with the API key" DisplayName="Assign Gemini API URL" sap:VirtualizedContainerService.HintSize="538,145" sap2010:WorkflowViewState.IdRef="Assign_47">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_48" Level="Info" Message="[&quot;Successfully cleaned review data&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_33" Level="Info" Message="[&quot;Successfully fetched transaction items from the queue.&quot;]" />
+      <Assign sap2010:Annotation.AnnotationText="Building the complete Gemini API URL with the API key" DisplayName="Assign Gemini API URL" sap:VirtualizedContainerService.HintSize="538,148" sap2010:WorkflowViewState.IdRef="Assign_47">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[GeminiApiEndpoint]</OutArgument>
         </Assign.To>
@@ -281,8 +282,8 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Info" Message="[&quot;Sending review to Gemini API via HTTP request.&quot;]" />
-      <TryCatch sap2010:Annotation.AnnotationText="Attempts to send a review via HTTP request to the Gemini API and retrieve the analysis data. If the request fails, it logs the error message and throws a SystemException with a custom error message." DisplayName="Handle Gemini API Request" sap:VirtualizedContainerService.HintSize="538,760" sap2010:WorkflowViewState.IdRef="TryCatch_9">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_34" Level="Info" Message="[&quot;Sending review to Gemini API via HTTP request.&quot;]" />
+      <TryCatch sap2010:Annotation.AnnotationText="Attempts to send a review via HTTP request to the Gemini API and retrieve the analysis data. If the request fails, it logs the error message and throws a SystemException with a custom error message." DisplayName="Handle Gemini API Request" sap:VirtualizedContainerService.HintSize="538,772" sap2010:WorkflowViewState.IdRef="TryCatch_9">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -291,7 +292,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <TryCatch.Try>
-          <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;  &quot;&quot;contents&quot;&quot;: [&#xA;    {&#xA;      &quot;&quot;role&quot;&quot;: &quot;&quot;user&quot;&quot;,&#xA;      &quot;&quot;parts&quot;&quot;: [&#xA;        {&#xA;          &quot;&quot;text&quot;&quot;: &quot;&quot;Analyze the following review from a customer of Little Caesars Pizza located at 2550 Hurontario St, Mississauga, ON L5B 1N5 and provide the sentiment, keywords, positive_aspects, negative_aspects, and a suggested_response for the owner in JSON format. Do not include any other fields. The response should have a human touch, be kind, genuine, and responsible. If any field is not applicable, use the value 'not applicable'.&quot; + review+ &quot;&quot;&quot;&#xA;        }&#xA;      ]&#xA;    }&#xA;  ]&#xA;}&quot;]" BodyFormat="application/xml" DisplayName="Send Gemini Api Request" EnableSSLVerification="True" EndPoint="[GeminiApiEndpoint]" sap:VirtualizedContainerService.HintSize="416,70" sap2010:WorkflowViewState.IdRef="HttpClient_4" Method="POST" Result="[GeminiApiResponse]" TimeoutMS="6000">
+          <ui:HttpClient ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" FileAttachments="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseAttachment="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" AuthenticationType="None" Body="[&quot;{&#xA;  &quot;&quot;contents&quot;&quot;: [&#xA;    {&#xA;      &quot;&quot;role&quot;&quot;: &quot;&quot;user&quot;&quot;,&#xA;      &quot;&quot;parts&quot;&quot;: [&#xA;        {&#xA;          &quot;&quot;text&quot;&quot;: &quot;&quot;Analyze the following review from a customer of Little Caesars Pizza located at 2550 Hurontario St, Mississauga, ON L5B 1N5 and provide the sentiment, keywords, positive_aspects, negative_aspects, and a suggested_response for the owner in JSON format. Do not include any other fields. The response should have a human touch, be kind, genuine, and responsible. If any field is not applicable, use the value 'not applicable'.&quot; + CustomerReview+ &quot;&quot;&quot;&#xA;        }&#xA;      ]&#xA;    }&#xA;  ]&#xA;}&quot;]" BodyFormat="application/xml" DisplayName="Send Gemini Api Request" EnableSSLVerification="True" EndPoint="[GeminiApiEndpoint]" sap:VirtualizedContainerService.HintSize="416,72" sap2010:WorkflowViewState.IdRef="HttpClient_4" Method="POST" Result="[GeminiApiResponse]" TimeoutMS="6000">
             <ui:HttpClient.Attachments>
               <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
             </ui:HttpClient.Attachments>
@@ -321,13 +322,13 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,346" sap2010:WorkflowViewState.IdRef="Sequence_29">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,351.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_29">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[exception.Message]">
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[exception.Message]">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -335,7 +336,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:LogMessage>
-                <Throw Exception="[New SystemException(&quot;HTTP Request to Gemini API Failed - Unable to retrieve review analysis data.&quot;)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_6">
+                <Throw Exception="[New SystemException(&quot;HTTP Request to Gemini API Failed - Unable to retrieve review analysis data.&quot;)]" sap:VirtualizedContainerService.HintSize="382,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_6">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -348,7 +349,7 @@
           </Catch>
         </TryCatch.Catches>
         <TryCatch.Finally>
-          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="416,91" sap2010:WorkflowViewState.IdRef="Sequence_53">
+          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_53">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -357,18 +358,18 @@
           </Sequence>
         </TryCatch.Finally>
       </TryCatch>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;Received response from Gemini API&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[&quot;Converting Gemini API response to JSON format.&quot;]" />
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" sap2010:Annotation.AnnotationText="Converts the HTTP response from the Gemini API, received as a string, into a JSON object for further data extraction and processing." DisplayName="Convert Response To JSON" sap:VirtualizedContainerService.HintSize="538,179" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[GeminiApiResponseJson]" JsonString="[GeminiApiResponse]">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_35" Level="Info" Message="[&quot;Received response from Gemini API&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_36" Level="Info" Message="[&quot;Converting Gemini API response to JSON format.&quot;]" />
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" sap2010:Annotation.AnnotationText="Converts the HTTP response from the Gemini API, received as a string, into a JSON object for further data extraction and processing." DisplayName="Convert Response To JSON" sap:VirtualizedContainerService.HintSize="538,186" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_4" JsonObject="[GeminiApiResponseJson]" JsonString="[GeminiApiResponse]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:DeserializeJson>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Info" Message="[&quot;Successfully converted Gemini API response to JSON. Ready for further processing.&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_37" Level="Info" Message="[&quot;Extracting analysis data and cleaning unnecessary characters&quot;]" />
-      <Assign sap2010:Annotation.AnnotationText="Extracts the analysis data (sentiment, keywords, positive aspects, and negative aspects) as a string from the JSON response provided by the Gemini API." DisplayName="Extract Analysis Data From Json" sap:VirtualizedContainerService.HintSize="538,171" sap2010:WorkflowViewState.IdRef="Assign_13">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_28" Level="Info" Message="[&quot;Successfully converted Gemini API response to JSON. Ready for further processing.&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_37" Level="Info" Message="[&quot;Extracting analysis data and cleaning unnecessary characters&quot;]" />
+      <Assign sap2010:Annotation.AnnotationText="Extracts the analysis data (sentiment, keywords, positive aspects, and negative aspects) as a string from the JSON response provided by the Gemini API." DisplayName="Extract Analysis Data From Json" sap:VirtualizedContainerService.HintSize="538,179.33333333333334" sap2010:WorkflowViewState.IdRef="Assign_13">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[AnalysisDataText]</OutArgument>
         </Assign.To>
@@ -381,7 +382,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign sap2010:Annotation.AnnotationText="Removes unnecessary characters like json and &quot;&quot;&quot; from the analysis data text, ensuring the content is clean and ready for further processing." DisplayName="Clean Analysis Data Text" sap:VirtualizedContainerService.HintSize="538,156" sap2010:WorkflowViewState.IdRef="Assign_30">
+      <Assign sap2010:Annotation.AnnotationText="Removes unnecessary characters like json and &quot;&quot;&quot; from the analysis data text, ensuring the content is clean and ready for further processing." DisplayName="Clean Analysis Data Text" sap:VirtualizedContainerService.HintSize="538,162.66666666666666" sap2010:WorkflowViewState.IdRef="Assign_30">
         <Assign.To>
           <OutArgument x:TypeArguments="x:String">[CleanedAnalyzedData]</OutArgument>
         </Assign.To>
@@ -394,16 +395,16 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_38" Level="Info" Message="[&quot;Successfully extracted and cleaned analysis data&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_39" Level="Info" Message="[&quot;Converting cleaned analysis data into a JSON object &quot;]" />
-      <TryCatch sap2010:Annotation.AnnotationText="Attempts to convert the cleaned analysis data text into a JSON object. If the conversion fails due to invalid JSON, it logs the error and throws a custom exception." DisplayName="Try Catch -  Try Convert Cleaned Text to JSON" sap:VirtualizedContainerService.HintSize="538,778" sap2010:WorkflowViewState.IdRef="TryCatch_10">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_38" Level="Info" Message="[&quot;Successfully extracted and cleaned analysis data&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_39" Level="Info" Message="[&quot;Converting cleaned analysis data into a JSON object &quot;]" />
+      <TryCatch sap2010:Annotation.AnnotationText="Attempts to convert the cleaned analysis data text into a JSON object. If the conversion fails due to invalid JSON, it logs the error and throws a custom exception." DisplayName="Try Catch -  Try Convert Cleaned Text to JSON" sap:VirtualizedContainerService.HintSize="538,792" sap2010:WorkflowViewState.IdRef="TryCatch_10">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <TryCatch.Try>
-          <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Convert Cleaned Text to JSON" sap:VirtualizedContainerService.HintSize="416,90" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[AnalyzedJsonObject]" JsonString="[CleanedAnalyzedData]" />
+          <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Convert Cleaned Text to JSON" sap:VirtualizedContainerService.HintSize="416,92" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_5" JsonObject="[AnalyzedJsonObject]" JsonString="[CleanedAnalyzedData]" />
         </TryCatch.Try>
         <TryCatch.Catches>
           <Catch x:TypeArguments="nj:JsonReaderException" sap:VirtualizedContainerService.HintSize="422.4,448" sap2010:WorkflowViewState.IdRef="Catch`1_27">
@@ -417,20 +418,20 @@
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="nj:JsonReaderException" Name="exception" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,346" sap2010:WorkflowViewState.IdRef="Sequence_50">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,351.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_50">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,173" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Trace" Message="[exception.source+&quot;-&quot;+exception.Message]" />
-                <Throw Exception="[New SystemException(&quot;Error parsing JSON data&quot;)]" sap:VirtualizedContainerService.HintSize="382,113" sap2010:WorkflowViewState.IdRef="Throw_19" />
+                <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="382,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_29" Level="Trace" Message="[exception.source+&quot;-&quot;+exception.Message]" />
+                <Throw Exception="[New SystemException(&quot;Error parsing JSON data&quot;)]" sap:VirtualizedContainerService.HintSize="382,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_19" />
               </Sequence>
             </ActivityAction>
           </Catch>
         </TryCatch.Catches>
         <TryCatch.Finally>
-          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_52">
+          <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="416,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_52">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -439,22 +440,22 @@
           </Sequence>
         </TryCatch.Finally>
       </TryCatch>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_40" Level="Info" Message="[&quot;Successfully converted cleaned analysis data into a JSON&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_41" Level="Info" Message="[&quot;Extracting sentiment, keywords, positive aspects, and negative aspects and suggested response from the analyzed JSON data&quot;]" />
-      <Sequence sap:VirtualizedContainerService.HintSize="538,8471" sap2010:WorkflowViewState.IdRef="Sequence_20">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_40" Level="Info" Message="[&quot;Successfully converted cleaned analysis data into a JSON&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_41" Level="Info" Message="[&quot;Extracting sentiment, keywords, positive aspects, and negative aspects and suggested response from the analyzed JSON data&quot;]" />
+      <Sequence sap:VirtualizedContainerService.HintSize="538,8628.666666666666" sap2010:WorkflowViewState.IdRef="Sequence_20">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the sentiment value from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Sentiment from JSON" sap:VirtualizedContainerService.HintSize="504,1744" sap2010:WorkflowViewState.IdRef="TryCatch_5">
+        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the sentiment value from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Sentiment from JSON" sap:VirtualizedContainerService.HintSize="504,1775.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_5">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
-            <Assign DisplayName="Assign Sentiment from JSON" sap:VirtualizedContainerService.HintSize="502,82" sap2010:WorkflowViewState.IdRef="Assign_17">
+            <Assign DisplayName="Assign Sentiment from JSON" sap:VirtualizedContainerService.HintSize="502,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_17">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[Sentiment]</OutArgument>
               </Assign.To>
@@ -475,20 +476,20 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:ArgumentNullException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="502,421" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="502,427.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_36">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Sequence sap:VirtualizedContainerService.HintSize="468,361" sap2010:WorkflowViewState.IdRef="Sequence_35">
+                  <Sequence sap:VirtualizedContainerService.HintSize="468,367.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_35">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
-                    <Assign DisplayName="Assign Error Message to Sentiment" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_34">
+                    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_19" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
+                    <Assign DisplayName="Assign Error Message to Sentiment" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_34">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[Sentiment]</OutArgument>
                       </Assign.To>
@@ -511,14 +512,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:NullReferenceException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="502,460" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="502,468.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_37">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="468,173" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
-                  <Assign DisplayName="Assign Error Message to Sentiment" sap:VirtualizedContainerService.HintSize="468,114" sap2010:WorkflowViewState.IdRef="Assign_36">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="468,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
+                  <Assign DisplayName="Assign Error Message to Sentiment" sap:VirtualizedContainerService.HintSize="468,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_36">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[Sentiment]</OutArgument>
                     </Assign.To>
@@ -526,7 +527,7 @@
                       <InArgument x:TypeArguments="x:String">Unable to parse JSON - Null Reference</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="468,113" sap2010:WorkflowViewState.IdRef="Throw_11" />
+                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="468,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_11" />
                 </Sequence>
               </ActivityAction>
             </Catch>
@@ -541,20 +542,20 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="502,346" sap2010:WorkflowViewState.IdRef="Sequence_45">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="502,351.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_45">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="468,173" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
-                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="468,113" sap2010:WorkflowViewState.IdRef="Throw_15" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="468,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_23" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
+                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="468,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_15" />
                 </Sequence>
               </ActivityAction>
             </Catch>
           </TryCatch.Catches>
           <TryCatch.Finally>
-            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="502,89" sap2010:WorkflowViewState.IdRef="Sequence_54">
+            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="502,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_54">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -563,14 +564,14 @@
             </Sequence>
           </TryCatch.Finally>
         </TryCatch>
-        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the  Keywords value from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Keywords from JSON" sap:VirtualizedContainerService.HintSize="504,1661" sap2010:WorkflowViewState.IdRef="TryCatch_6">
+        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the  Keywords value from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Keywords from JSON" sap:VirtualizedContainerService.HintSize="504,1692.6666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_6">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
-            <Assign DisplayName="Assign Keywords from JSON" sap:VirtualizedContainerService.HintSize="468,82" sap2010:WorkflowViewState.IdRef="Assign_23">
+            <Assign DisplayName="Assign Keywords from JSON" sap:VirtualizedContainerService.HintSize="468,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_23">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[Keywords]</OutArgument>
               </Assign.To>
@@ -591,14 +592,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:NullReferenceException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,460" sap2010:WorkflowViewState.IdRef="Sequence_26">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,468.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_26">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_24">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_24">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[Keywords]</OutArgument>
                     </Assign.To>
@@ -606,7 +607,7 @@
                       <InArgument x:TypeArguments="x:String">Unable to parse JSON - Null Reference</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_3" />
                 </Sequence>
               </ActivityAction>
             </Catch>
@@ -621,14 +622,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:ArgumentNullException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,338" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,344.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_42">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_40">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_20" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_40">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[Keywords]</OutArgument>
                     </Assign.To>
@@ -650,20 +651,20 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,346" sap2010:WorkflowViewState.IdRef="Sequence_46">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,351.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_46">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
-                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_16" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_24" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
+                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_16" />
                 </Sequence>
               </ActivityAction>
             </Catch>
           </TryCatch.Catches>
           <TryCatch.Finally>
-            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_55">
+            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_55">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -672,14 +673,14 @@
             </Sequence>
           </TryCatch.Finally>
         </TryCatch>
-        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the Positive Aspects values from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Positive Aspects from JSON" sap:VirtualizedContainerService.HintSize="504,1661" sap2010:WorkflowViewState.IdRef="TryCatch_7">
+        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the Positive Aspects values from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Positive Aspects from JSON" sap:VirtualizedContainerService.HintSize="504,1692.6666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
-            <Assign DisplayName="Assign Positive Aspects from JSON" sap:VirtualizedContainerService.HintSize="468,82" sap2010:WorkflowViewState.IdRef="Assign_25">
+            <Assign DisplayName="Assign Positive Aspects from JSON" sap:VirtualizedContainerService.HintSize="468,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_25">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[PositiveAspects]</OutArgument>
               </Assign.To>
@@ -700,14 +701,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:NullReferenceException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,460" sap2010:WorkflowViewState.IdRef="Sequence_40">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,468.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_40">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_38">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_17" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_38">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[PositiveAspects]</OutArgument>
                     </Assign.To>
@@ -715,7 +716,7 @@
                       <InArgument x:TypeArguments="x:String">Unable to parse JSON - Null Reference</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_13" />
+                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_13" />
                 </Sequence>
               </ActivityAction>
             </Catch>
@@ -730,14 +731,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:ArgumentNullException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,338" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,344.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_43">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_41">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_21" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_41">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[PositiveAspects]</OutArgument>
                     </Assign.To>
@@ -759,20 +760,20 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,346" sap2010:WorkflowViewState.IdRef="Sequence_47">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,351.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_47">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
-                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_17" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_25" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
+                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_17" />
                 </Sequence>
               </ActivityAction>
             </Catch>
           </TryCatch.Catches>
           <TryCatch.Finally>
-            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_56">
+            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_56">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -781,14 +782,14 @@
             </Sequence>
           </TryCatch.Finally>
         </TryCatch>
-        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the Negative Aspects values from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Negative Aspects from JSON" sap:VirtualizedContainerService.HintSize="504,1661" sap2010:WorkflowViewState.IdRef="TryCatch_8">
+        <TryCatch sap2010:Annotation.AnnotationText="Attempts to extract the Negative Aspects values from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Negative Aspects from JSON" sap:VirtualizedContainerService.HintSize="504,1692.6666666666667" sap2010:WorkflowViewState.IdRef="TryCatch_8">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
-            <Assign DisplayName="Assign Negative Aspects from JSON" sap:VirtualizedContainerService.HintSize="468,82" sap2010:WorkflowViewState.IdRef="Assign_27">
+            <Assign DisplayName="Assign Negative Aspects from JSON" sap:VirtualizedContainerService.HintSize="468,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_27">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[NegativeAspects]</OutArgument>
               </Assign.To>
@@ -809,14 +810,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:NullReferenceException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,460" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,468.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_41">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_39">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_18" Level="Info" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_39">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[NegativeAspects]</OutArgument>
                     </Assign.To>
@@ -824,7 +825,7 @@
                       <InArgument x:TypeArguments="x:String">Unable to parse JSON - Null Reference</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_14" />
+                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_14" />
                 </Sequence>
               </ActivityAction>
             </Catch>
@@ -839,14 +840,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:ArgumentNullException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,338" sap2010:WorkflowViewState.IdRef="Sequence_44">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,344.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_44">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_42">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_22" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_42">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[NegativeAspects]</OutArgument>
                     </Assign.To>
@@ -868,20 +869,20 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,346" sap2010:WorkflowViewState.IdRef="Sequence_48">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,351.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_48">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
-                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_18" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_26" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
+                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_18" />
                 </Sequence>
               </ActivityAction>
             </Catch>
           </TryCatch.Catches>
           <TryCatch.Finally>
-            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_57">
+            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_57">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -890,14 +891,14 @@
             </Sequence>
           </TryCatch.Finally>
         </TryCatch>
-        <TryCatch sap2010:Annotation.AnnotationText="--m Attempts to extract the Suggested Response values from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Suggest Response from JSON" sap:VirtualizedContainerService.HintSize="504,1652" sap2010:WorkflowViewState.IdRef="TryCatch_11">
+        <TryCatch sap2010:Annotation.AnnotationText="--m Attempts to extract the Suggested Response values from the analyzedJsonObject. If a NullReferenceException or ArgumentNullException occurs, the error is logged. Additionally, a general exception handler is in place to catch and manage any other unexpected errors." DisplayName="Try Catch - Try to Extract Suggest Response from JSON" sap:VirtualizedContainerService.HintSize="504,1683.3333333333333" sap2010:WorkflowViewState.IdRef="TryCatch_11">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <TryCatch.Try>
-            <Assign DisplayName="Assign Suggested Response from JSON" sap:VirtualizedContainerService.HintSize="468,82" sap2010:WorkflowViewState.IdRef="Assign_49">
+            <Assign DisplayName="Assign Suggested Response from JSON" sap:VirtualizedContainerService.HintSize="468,85.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_49">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:String">[SuggestedResponse]</OutArgument>
               </Assign.To>
@@ -918,14 +919,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:NullReferenceException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,460" sap2010:WorkflowViewState.IdRef="Sequence_58">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,468.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_58">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_49" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,114" sap2010:WorkflowViewState.IdRef="Assign_50">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_49" Level="Warn" Message="[exception.Source + &quot;-&quot; +exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,117.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_50">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[SuggestedResponse]</OutArgument>
                     </Assign.To>
@@ -933,7 +934,7 @@
                       <InArgument x:TypeArguments="x:String">Unable to parse JSON - Null Reference</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_20" />
+                  <Throw Exception="[New SystemException(&quot;Unable to parse JSON - Null Reference&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_20" />
                 </Sequence>
               </ActivityAction>
             </Catch>
@@ -948,14 +949,14 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:ArgumentNullException" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,338" sap2010:WorkflowViewState.IdRef="Sequence_59">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,344.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_59">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_50" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
-                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_51">
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_50" Level="Warn" Message="[exception.Source + &quot; &quot; + exception.Message]" />
+                  <Assign DisplayName="Assign Error Message" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_51">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[SuggestedResponse]</OutArgument>
                     </Assign.To>
@@ -977,20 +978,20 @@
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,346" sap2010:WorkflowViewState.IdRef="Sequence_60">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="468,351.3333333333333" sap2010:WorkflowViewState.IdRef="Sequence_60">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,173" sap2010:WorkflowViewState.IdRef="LogMessage_51" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
-                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,113" sap2010:WorkflowViewState.IdRef="Throw_21" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="434,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_51" Level="Warn" Message="[exception.Source+ &quot;-&quot; + exception.Message]" />
+                  <Throw Exception="[new SystemException(&quot;An unexpected error occurred&quot;)]" sap:VirtualizedContainerService.HintSize="434,114.66666666666667" sap2010:WorkflowViewState.IdRef="Throw_21" />
                 </Sequence>
               </ActivityAction>
             </Catch>
           </TryCatch.Catches>
           <TryCatch.Finally>
-            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,89" sap2010:WorkflowViewState.IdRef="Sequence_61">
+            <Sequence DisplayName="Finally" sap:VirtualizedContainerService.HintSize="468,90.66666666666667" sap2010:WorkflowViewState.IdRef="Sequence_61">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1000,27 +1001,27 @@
           </TryCatch.Finally>
         </TryCatch>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_42" Level="Info" Message="[&quot;Extracted sentiment, keywords, positive aspects, and negative aspects, and suggested response from the analyzed JSON data.&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_43" Level="Info" Message="[&quot;Initializing a temporary DataTable to store analysis data.&quot;]" />
-      <ui:BuildDataTable sap2010:Annotation.AnnotationText="Initializes a temporary DataTable (dt_Temp) with columns for storing CustomerName, Review, Sentiment, Keywords, PositiveAspects, and NegativeAspects. This table is used for processing and storing intermediate data before merging with the main DataTable" DataTable="[dt_Temp]" DisplayName="Initialize Temporary DataTable" sap:VirtualizedContainerService.HintSize="538,194" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;CustomerName&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xA;                  &lt;xs:simpleType&gt;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xA;                    &lt;/xs:restriction&gt;&#xA;                  &lt;/xs:simpleType&gt;&#xA;                &lt;/xs:element&gt;&#xA;                &lt;xs:element name=&quot;Review&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;RelativeTime&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Sentiment&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Keywords&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;PositiveAspects&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;NegativeAspects&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;SuggestedResponse&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_42" Level="Info" Message="[&quot;Extracted sentiment, keywords, positive aspects, and negative aspects, and suggested response from the analyzed JSON data.&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_43" Level="Info" Message="[&quot;Initializing a temporary DataTable to store analysis data.&quot;]" />
+      <ui:BuildDataTable sap2010:Annotation.AnnotationText="Initializes a temporary DataTable (dt_Temp) with columns for storing CustomerName, Review, Sentiment, Keywords, PositiveAspects, and NegativeAspects. This table is used for processing and storing intermediate data before merging with the main DataTable" DataTable="[dt_Temp]" DisplayName="Initialize Temporary DataTable" sap:VirtualizedContainerService.HintSize="538,204" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xD;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xD;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xD;&#xA;      &lt;xs:complexType&gt;&#xD;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xD;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xD;&#xA;            &lt;xs:complexType&gt;&#xD;&#xA;              &lt;xs:sequence&gt;&#xD;&#xA;                &lt;xs:element name=&quot;CustomerName&quot; msdata:Caption=&quot;&quot; minOccurs=&quot;0&quot;&gt;&#xD;&#xA;                  &lt;xs:simpleType&gt;&#xD;&#xA;                    &lt;xs:restriction base=&quot;xs:string&quot;&gt;&#xD;&#xA;                      &lt;xs:maxLength value=&quot;100&quot; /&gt;&#xD;&#xA;                    &lt;/xs:restriction&gt;&#xD;&#xA;                  &lt;/xs:simpleType&gt;&#xD;&#xA;                &lt;/xs:element&gt;&#xD;&#xA;                &lt;xs:element name=&quot;CustomerEmail&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Review&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Sentiment&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;Keywords&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;PositiveAspects&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;NegativeAspects&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;                &lt;xs:element name=&quot;SuggestedResponse&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xD;&#xA;              &lt;/xs:sequence&gt;&#xD;&#xA;            &lt;/xs:complexType&gt;&#xD;&#xA;          &lt;/xs:element&gt;&#xD;&#xA;        &lt;/xs:choice&gt;&#xD;&#xA;      &lt;/xs:complexType&gt;&#xD;&#xA;    &lt;/xs:element&gt;&#xD;&#xA;  &lt;/xs:schema&gt;&#xD;&#xA;&lt;/NewDataSet&gt;">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:BuildDataTable>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_44" Level="Info" Message="[&quot;Temporary DataTable initialized&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_45" Message="[&quot;Adding a new row to the temporary DataTable with data&quot;]" />
-      <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Adds a new row to the temporary DataTable (dt_Temp) with values for CustomerName, Review, RelativeTime, Sentiment, Keywords, PositiveAspects, and NegativeAspects. This step stores processed data before merging it into the main DataTable." ArrayRow="[{CustomerName, Review, RelativeTime, Sentiment,Keywords, PositiveAspects, NegativeAspects, SuggestedResponse}]" DataTable="[dt_Temp]" DisplayName="Add Row to Temporary DataTable" sap:VirtualizedContainerService.HintSize="538,305" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_44" Level="Info" Message="[&quot;Temporary DataTable initialized&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_45" Message="[&quot;Adding a new row to the temporary DataTable with data&quot;]" />
+      <ui:AddDataRow DataRow="{x:Null}" sap2010:Annotation.AnnotationText="Adds a new row to the temporary DataTable (dt_Temp) with values for CustomerName, Review, RelativeTime, Sentiment, Keywords, PositiveAspects, and NegativeAspects. This step stores processed data before merging it into the main DataTable." ArrayRow="[{CustomerName, CustomerEmail, CustomerReview, Sentiment,Keywords, PositiveAspects, NegativeAspects, SuggestedResponse}]" DataTable="[dt_Temp]" DisplayName="Add Row to Temporary DataTable" sap:VirtualizedContainerService.HintSize="538,318.6666666666667" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:AddDataRow>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_46" Level="Info" Message="[&quot;Adding a new row to the temporary DataTable with data&quot;]" />
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,173" sap2010:WorkflowViewState.IdRef="LogMessage_47" Message="[&quot;Merging data from the temporary DataTable into the main data table.&quot;]" />
-      <ui:MergeDataTable sap2010:Annotation.AnnotationText="Merges the rows from the temporary DataTable (dt_Temp) into the main DataTable (io_dt_AnalyzedData). The MissingSchemaAction is set to Ignore, ensuring that any columns in the source DataTable that do not match the destination schema are ignored during the merge." Destination="[io_dt_AnalyzedData]" DisplayName="Merge Temporary Data with Analyzed Data" sap:VirtualizedContainerService.HintSize="538,258" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[dt_Temp]">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_46" Level="Info" Message="[&quot;Adding a new row to the temporary DataTable with data&quot;]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="538,176.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_47" Message="[&quot;Merging data from the temporary DataTable into the main data table.&quot;]" />
+      <ui:MergeDataTable sap2010:Annotation.AnnotationText="Merges the rows from the temporary DataTable (dt_Temp) into the main DataTable (io_dt_AnalyzedData). The MissingSchemaAction is set to Ignore, ensuring that any columns in the source DataTable that do not match the destination schema are ignored during the merge." Destination="[io_dt_AnalyzedData]" DisplayName="Merge Temporary Data with Analyzed Data" sap:VirtualizedContainerService.HintSize="538,271.3333333333333" sap2010:WorkflowViewState.IdRef="MergeDataTable_1" MissingSchemaAction="Add" Source="[dt_Temp]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
